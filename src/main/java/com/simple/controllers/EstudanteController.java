@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.simple.entities.Curso;
 import com.simple.entities.Estudante;
 import com.simple.repositories.EstudanteRepository;
 
