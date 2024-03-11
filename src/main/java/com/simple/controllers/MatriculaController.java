@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,12 +34,21 @@ public class MatriculaController {
 
      
     @GetMapping("/{id}")
-    public Matricula MatriculaById(@PathVariable @Validated Long id){
+    public Matricula matriculaById(@PathVariable @Validated Long id){
         log.info("Get registration by id", id);
 
         var  result =  repository.findById(id).get();
 
         return result;
+    }
+
+    @PostMapping
+    public Matricula insert(@RequestBody @Validated Matricula matricula){
+            log.info("Insert new registration", matricula);
+
+            Matricula  result =  repository.save(matricula);
+    
+            return result;
     }
     
 }
