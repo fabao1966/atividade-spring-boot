@@ -9,5 +9,7 @@ INSERT INTO estudantes(data_matricula, nome) VALUES ('1582-10-15', 'Diana Prince
 
 INSERT INTO estudantes(data_matricula, nome) VALUES ('2024-02-29', 'Manda chuva');
 
+INSERT INTO estudantes(data_matricula, nome) VALUES ('2024-02-29', 'Zé Colmeia');
+
 INSERT INTO matriculas(curso_id, estudante_id) VALUES (1, 2);
 INSERT INTO matriculas(curso_id, estudante_id) VALUES (2, 1);
