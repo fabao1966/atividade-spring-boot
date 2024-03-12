@@ -52,11 +52,12 @@ public class MatriculaController {
         return result;
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Matricula update(@RequestBody @Validated Matricula matricula) {
+    public Matricula update(@PathVariable Long id, @RequestBody @Validated Matricula matricula) {
         log.info("update registration", matricula);
-        Matricula result = repository.save(matricula);
+        Matricula res = matriculaById(id);
+        Matricula result = repository.save(res);
         return result;
     }
 
