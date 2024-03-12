@@ -38,7 +38,7 @@ public class CursoController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Curso cursoFindById(@PathVariable @Validated Long id) {
+    public Curso cursoById(@PathVariable @Validated Long id) {
         log.info("Get cursos by id", id);
         var result = repository.findById(id).get();
         return result;
@@ -52,11 +52,12 @@ public class CursoController {
         return result;
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Curso update(@RequestBody @Validated Curso curso) {
+    public Curso update(@PathVariable @Validated Long id, @RequestBody @Validated Curso curso) {
         log.info("update course", curso);
-        Curso result = repository.save(curso);
+        Curso res = cursoById(id);
+        Curso result = repository.save(res);
         return result;
     }
 
@@ -64,7 +65,7 @@ public class CursoController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCurso(@Validated @PathVariable Long id) {
         log.info("delete course by id", id);
-        Curso result = cursoFindById(id);
+        Curso result = cursoById(id);
         repository.delete(result);
     }
 
