@@ -38,7 +38,7 @@ public class EstudanteController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Estudante cursoFindById(@PathVariable @Validated Long id) {
+    public Estudante estudanteById(@PathVariable @Validated Long id) {
         log.info("Get students by id", id);
         var result = repository.findById(id).get();
         return result;
@@ -52,11 +52,12 @@ public class EstudanteController {
         return result;
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Estudante update(@RequestBody @Validated Estudante estudante) {
+    public Estudante update(@PathVariable @Validated Long id, @RequestBody @Validated Estudante estudante) {
         log.info("update student", estudante);
-        Estudante result = repository.save(estudante);
+        Estudante res = estudanteById(id);
+        Estudante result = repository.save(res);
         return result;
     }
 
@@ -64,7 +65,7 @@ public class EstudanteController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCurso(@Validated @PathVariable Long id) {
         log.info("delete student by id", id);
-        Estudante result = cursoFindById(id);
+        Estudante result = estudanteById(id);
         repository.delete(result);
 
     }
